@@ -1,0 +1,960 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Noor | BL Author Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --primary: #1a1a2e;
+            --secondary: #16213e;
+            --accent: #e94560;
+            --gold: #c9a227;
+            --light: #f5f5f5;
+            --text: #333;
+            --text-light: #666;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--light);
+            color: var(--text);
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(26, 26, 46, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(233, 69, 96, 0.2);
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--gold);
+            text-decoration: none;
+            letter-spacing: 2px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover { color: var(--accent); }
+        .nav-links a:hover::after { width: 100%; }
+
+        .mobile-menu {
+            display: none;
+            color: #fff;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 100px 5% 50px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(233, 69, 96, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-text h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 4rem;
+            font-weight: 900;
+            color: #fff;
+            line-height: 1.1;
+            margin-bottom: 1rem;
+        }
+
+        .hero-text h1 span {
+            color: var(--gold);
+            display: block;
+        }
+
+        .hero-text .subtitle {
+            font-size: 1.3rem;
+            color: rgba(255,255,255,0.7);
+            margin-bottom: 2rem;
+            font-weight: 300;
+        }
+
+        .hero-text p {
+            color: rgba(255,255,255,0.6);
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: #fff;
+            border: 2px solid var(--accent);
+        }
+
+        .btn-primary:hover {
+            background: transparent;
+            color: var(--accent);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(233, 69, 96, 0.3);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: #fff;
+            border: 2px solid rgba(255,255,255,0.3);
+        }
+
+        .btn-outline:hover {
+            border-color: var(--gold);
+            color: var(--gold);
+            transform: translateY(-2px);
+        }
+
+        .hero-image {
+            position: relative;
+            display: flex;
+            justify-content: center;
+        }
+
+        .profile-container {
+            position: relative;
+            width: 400px;
+            height: 400px;
+        }
+
+        .profile-img {
+            width: 100%;
+            height: 100%;
+            border-radius: 20px;
+            object-fit: cover;
+            border: 3px solid var(--gold);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+            position: relative;
+            z-index: 2;
+        }
+
+        .profile-bg {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            width: 100%;
+            height: 100%;
+            border: 3px solid var(--accent);
+            border-radius: 20px;
+            z-index: 1;
+        }
+
+        .floating-books {
+            position: absolute;
+            bottom: -30px;
+            right: -30px;
+            z-index: 3;
+            background: var(--secondary);
+            padding: 1rem 1.5rem;
+            border-radius: 15px;
+            border: 1px solid var(--gold);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .floating-books span {
+            color: var(--gold);
+            font-weight: 700;
+            font-size: 1.5rem;
+        }
+
+        .floating-books p {
+            color: rgba(255,255,255,0.7);
+            font-size: 0.8rem;
+        }
+
+        /* Social Bar */
+        .social-bar {
+            background: var(--secondary);
+            padding: 1.5rem 5%;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            flex-wrap: wrap;
+        }
+
+        .social-link {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+        }
+
+        .social-link:hover {
+            color: var(--gold);
+            background: rgba(255,255,255,0.05);
+            transform: translateY(-2px);
+        }
+
+        .social-icon {
+            width: 24px;
+            height: 24px;
+            fill: currentColor;
+        }
+
+        /* Books Section */
+        .section {
+            padding: 100px 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-header h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .section-header p {
+            color: var(--text-light);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .divider {
+            width: 60px;
+            height: 4px;
+            background: var(--accent);
+            margin: 1rem auto;
+            border-radius: 2px;
+        }
+
+        .books-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .book-card {
+            background: #fff;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            transition: all 0.4s;
+            position: relative;
+        }
+
+        .book-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+        }
+
+        .book-cover {
+            width: 100%;
+            height: 450px;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, #2d1b4e, #1a1a2e);
+        }
+
+        .book-cover img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .book-card:hover .book-cover img {
+            transform: scale(1.05);
+        }
+
+        .book-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--accent);
+            color: #fff;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            z-index: 2;
+        }
+
+        .book-info {
+            padding: 1.5rem;
+        }
+
+        .book-info h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            line-height: 1.3;
+        }
+
+        .book-info .genre {
+            color: var(--accent);
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.5rem;
+        }
+
+        .book-info p {
+            color: var(--text-light);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .read-btn {
+            display: inline-block;
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            border-bottom: 2px solid var(--accent);
+            padding-bottom: 2px;
+            transition: all 0.3s;
+        }
+
+        .read-btn:hover {
+            color: var(--accent);
+            border-bottom-width: 3px;
+        }
+
+        /* Platforms Section */
+        .platforms {
+            background: var(--primary);
+            padding: 80px 5%;
+        }
+
+        .platforms .section-header h2 { color: #fff; }
+        .platforms .section-header p { color: rgba(255,255,255,0.7); }
+
+        .platforms-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .platform-card {
+            background: var(--secondary);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: block;
+        }
+
+        .platform-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+        }
+
+        .platform-icon {
+            width: 60px;
+            height: 60px;
+            background: rgba(233, 69, 96, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            font-size: 1.5rem;
+        }
+
+        .platform-card h3 {
+            color: #fff;
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .platform-card p {
+            color: rgba(255,255,255,0.6);
+            font-size: 0.9rem;
+        }
+
+        /* About Section */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 4rem;
+            align-items: center;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .about-img img {
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .stat-item { text-align: center; }
+
+        .stat-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            color: var(--accent);
+            font-weight: 700;
+        }
+
+        .stat-label {
+            color: var(--text-light);
+            font-size: 0.9rem;
+            margin-top: 0.3rem;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--primary);
+            color: #fff;
+            padding: 60px 5% 30px;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .footer-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            color: var(--gold);
+            margin-bottom: 1rem;
+        }
+
+        .footer-social {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .footer-social a {
+            width: 45px;
+            height: 45px;
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .footer-social a:hover {
+            background: var(--accent);
+            border-color: var(--accent);
+            transform: translateY(-3px);
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: rgba(255,255,255,0.6);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover { color: var(--gold); }
+
+        .copyright {
+            color: rgba(255,255,255,0.4);
+            font-size: 0.9rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        /* Responsive */
+        @media (max-width: 968px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .hero-text h1 { font-size: 3rem; }
+            .hero-image { order: -1; }
+
+            .profile-container {
+                width: 300px;
+                height: 300px;
+                margin: 0 auto;
+            }
+
+            .cta-buttons { justify-content: center; }
+            .about-content { grid-template-columns: 1fr; text-align: center; }
+            .nav-links { display: none; }
+            .mobile-menu { display: block; }
+        }
+
+        @media (max-width: 600px) {
+            .hero-text h1 { font-size: 2.2rem; }
+            .section-header h2 { font-size: 2rem; }
+            .books-grid { grid-template-columns: 1fr; }
+            .social-bar { flex-wrap: wrap; gap: 1rem; }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .animate {
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+
+        .delay-1 { animation-delay: 0.1s; }
+        .delay-2 { animation-delay: 0.2s; }
+        .delay-3 { animation-delay: 0.3s; }
+    </style>
+<base target="_blank">
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav>
+        <a href="#" class="logo">NOOR</a>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#books">Books</a></li>
+            <li><a href="#platforms">Platforms</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+        <div class="mobile-menu">☰</div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <div class="hero-text animate">
+                <h1>Welcome to the <span>World of Noor</span></h1>
+                <p class="subtitle">BL Author • Romance • Drama</p>
+                <p>Writing passionate BL stories that explore love, power, and destiny. From mafia bosses to alpha doctors, every tale is a journey into the extraordinary.</p>
+                <div class="cta-buttons">
+                    <a href="#books" class="btn btn-primary">Read My Books</a>
+                    <a href="#platforms" class="btn btn-outline">Follow Me</a>
+                </div>
+            </div>
+            <div class="hero-image animate delay-2">
+                <div class="profile-container">
+                    <div class="profile-img" style="background: linear-gradient(135deg, #1a1a2e, #16213e); display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,0.3);">
+                        <span style="font-size: 1.2rem;"><img src="images\Profilepic.png" class="profile-img"></span>
+                    </div>
+                    <div class="profile-bg"></div>
+                    <div class="floating-books">
+                        <span>7+</span>
+                        <p>Novels Published</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Social Bar -->
+    <div class="social-bar">
+        <a href="https://www.webnovel.com/profile/4502280100" target="_blank" class="social-link">
+            <svg class="social-icon" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
+            Webnovel
+        </a>
+        <a href="https://www.goodnovel.com/author/133941576" target="_blank" class="social-link">
+            <svg class="social-icon" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            Goodnovel
+        </a>
+        <a href="https://x.com/Noor_8874" target="_blank" class="social-link">
+            <svg class="social-icon" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            X (Twitter)
+        </a>
+        <a href="https://www.instagram.com/noor._.8874/" target="_blank" class="social-link">
+            <svg class="social-icon" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+            Instagram
+        </a>
+    </div>
+
+    <!-- Books Section -->
+    <section class="section" id="books">
+        <div class="section-header">
+            <h2>My Books</h2>
+            <div class="divider"></div>
+            <p>BL stories filled with passion, power, and unexpected love</p>
+        </div>
+
+        <div class="books-grid">
+            <!-- Book 1: Marked by the Alpha Boss -->
+            <div class="book-card">
+                <div class="book-cover">
+                    <img src="images\book1.jpg.png" alt="Marked by the Alpha Boss [BL]">
+                    <span class="book-badge">Popular</span>
+                </div>
+                <div class="book-info">
+                    <div class="genre">BL / Omegaverse</div>
+                    <h3>Marked by the Alpha Boss [BL]</h3>
+                    <p>When an omega crosses paths with a powerful alpha boss, boundaries blur and passions ignite in this intense office romance.</p>
+                    <a href="https://www.webnovel.com/book/marked-by-the-alpha-boss-%5Bbl%5D_33428410408373205" target="_blank" class="read-btn">Read on Webnovel →</a>
+                </div>
+            </div>
+
+            <!-- Book 2: Not Yours -->
+            <div class="book-card">
+                <div class="book-cover">
+                    <img src="images\book2.jpg.png" alt="Not Yours (BL)">
+                    <span class="book-badge">Hot</span>
+                </div>
+                <div class="book-info">
+                    <div class="genre">BL / Romance</div>
+                    <h3>Not Yours (BL)</h3>
+                    <p>A story of resistance and surrender, where two hearts fight against the inevitable pull of destiny and desire.</p>
+                    <a href="https://www.webnovel.com/book/not-yours-(bl)_32127632408936905" target="_blank" class="read-btn">Read on Webnovel →</a>
+                </div>
+            </div>
+
+            <!-- Book 3: My Model -->
+            <div class="book-card">
+                <div class="book-cover">
+                    <img src="images\book3.jpg.png" alt="My Model [BL]">
+                </div>
+                <div class="book-info">
+                    <div class="genre">BL / Drama</div>
+                    <h3>My Model [BL]</h3>
+                    <p>Behind the glamour of the fashion world, a photographer and his model discover that the most beautiful shots are the ones taken by the heart.</p>
+                    <a href="https://www.goodnovel.com/book/My-Model-BL_31001049601" target="_blank" class="read-btn">Read on Goodnovel →</a>
+                </div>
+            </div>
+
+            <!-- Book 4: Dark Love -->
+            <div class="book-card">
+                <div class="book-cover">
+                    <img src="images\book4.jpg.png" alt="Dark Love (BL)">
+                    <span class="book-badge">Dark</span>
+                </div>
+                <div class="book-info">
+                    <div class="genre">BL / Dark Romance</div>
+                    <h3>Dark Love (BL)</h3>
+                    <p>In the shadows of obsession and control, love becomes both a weapon and a salvation. A gripping tale of dangerous attraction.</p>
+                    <a href="https://www.webnovel.com/book/dark-love-(bl)_33119967500275405" target="_blank" class="read-btn">Read on Webnovel →</a>
+                </div>
+            </div>
+
+            <!-- Book 5: Marked by the Mafia Boss -->
+            <div class="book-card">
+                <div class="book-cover">
+                    <img src="images\book5.jpg.png" alt="Marked by the Mafia Boss [BL]">
+                    <span class="book-badge">Mafia</span>
+                </div>
+                <div class="book-info">
+                    <div class="genre">BL / Mafia</div>
+                    <h3>Marked by the Mafia Boss [BL]</h3>
+                    <p>In the ruthless underworld, a mafia boss claims what he wants—and he wants everything. Power, danger, and forbidden love collide.</p>
+                    <a href="https://www.goodnovel.com/book/Marked-by-the-Mafia-Boss-BL_31001183959" target="_blank" class="read-btn">Read on Goodnovel →</a>
+                </div>
+            </div>
+
+            <!-- Book 6: The Mafia King is Obsessed -->
+            <div class="book-card">
+                <div class="book-cover">
+                    <img src="images\book6.jpg.png" alt="The Mafia King is Obsessed with His Alpha Doctor">
+                    <span class="book-badge">New</span>
+                </div>
+                <div class="book-info">
+                    <div class="genre">BL / Mafia / Medical</div>
+                    <h3>The Mafia King is Obsessed with His Alpha Doctor</h3>
+                    <p>It's a problem when the most dangerous man in the city falls for the only doctor who can save him. A lethal combination of power and healing.</p>
+                    <a href="https://www.webnovel.com/book/the-mafia-king-is-obsessed-with-his-alpha-doctor-it%E2%80%99s-a-problem_34742029500460105" target="_blank" class="read-btn">Read on Webnovel →</a>
+                </div>
+            </div>
+
+            <!-- Book 7: From Mafia to Prince -->
+            <div class="book-card">
+                <div class="book-cover">
+                    <img src="images\book7.jpg.png" alt="From Mafia to Prince [BL]">
+                    <span class="book-badge">Fantasy</span>
+                </div>
+                <div class="book-info">
+                    <div class="genre">BL / Fantasy / Isekai</div>
+                    <h3>From Mafia to Prince [BL]</h3>
+                    <p>Transported from the underworld into a royal body in a magical realm, he must navigate court intrigue, ancient magic, and an unexpected reverse harem.</p>
+                    <a href="https://www.anystories.app/book/reincarnated-as-the-prince-bl/691589ee8056c3da1276ad12" target="_blank" class="read-btn">Read on Anystories →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Platforms Section -->
+    <section class="platforms" id="platforms">
+        <div class="section-header">
+            <h2>Find Me On</h2>
+            <div class="divider"></div>
+            <p>Follow my writing journey across multiple platforms</p>
+        </div>
+
+        <div class="platforms-grid">
+            <a href="https://www.webnovel.com/profile/4502280100" target="_blank" class="platform-card">
+                <div class="platform-icon">📚</div>
+                <h3>Webnovel</h3>
+                <p>5 novels • Ongoing updates</p>
+            </a>
+
+            <a href="https://www.goodnovel.com/author/133941576" target="_blank" class="platform-card">
+                <div class="platform-icon">✨</div>
+                <h3>Goodnovel</h3>
+                <p>2 novels • Exclusive content</p>
+            </a>
+
+            <a href="https://www.anystories.app/book/reincarnated-as-the-prince-bl/691589ee8056c3da1276ad12" target="_blank" class="platform-card">
+                <div class="platform-icon">📖</div>
+                <h3>Anystories</h3>
+                <p>Fantasy BL • Isekai romance</p>
+            </a>
+
+            <a href="https://x.com/Noor_8874" target="_blank" class="platform-card">
+                <div class="platform-icon">🐦</div>
+                <h3>X (Twitter)</h3>
+                <p>Updates & behind-the-scenes</p>
+            </a>
+
+            <a href="https://www.instagram.com/noor._.8874/" target="_blank" class="platform-card">
+                <div class="platform-icon">📸</div>
+                <h3>Instagram</h3>
+                <p>Visual stories & quotes</p>
+            </a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="section" id="about">
+        <div class="section-header">
+            <h2>About Me</h2>
+            <div class="divider"></div>
+        </div>
+
+        <div class="about-content">
+            <div class="about-img">
+                <div style="width: 100%; height: 400px; background: linear-gradient(135deg, #1a1a2e, #16213e); border-radius: 20px; display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,0.3);">
+                    <span><img src="images\Picture.png" class="profile-img"></span>
+                </div>
+            </div>
+            <div>
+                <h3 style="font-family: 'Playfair Display', serif; font-size: 2rem; color: var(--primary); margin-bottom: 1rem;">The Story Behind the Writer</h3>
+                <p style="color: var(--text-light); line-height: 1.8; margin-bottom: 1.5rem;">
+                    Hello! I'm Noor, a BL author passionate about creating stories that explore the depths of love, power, and identity. 
+                    From omegaverse dynamics to mafia romance, my worlds are built on intense emotions and unforgettable characters.
+                </p>
+                <p style="color: var(--text-light); line-height: 1.8; margin-bottom: 1.5rem;">
+                    Whether it's an alpha boss marking his omega, a mafia king falling for his doctor, or a reincarnated prince finding love 
+                    in a magical realm I write to make hearts race and emotions soar.
+                </p>
+                <p style="color: var(--text-light); line-height: 1.8;">
+                    When I'm not writing, you'll find me reading, gaming, or connecting with my amazing readers across social media. 
+                    Thank you for being part of this journey!
+                </p>
+
+                <div class="stats">
+                    <div class="stat-item">
+                        <div class="stat-number">7+</div>
+                        <div class="stat-label">Novels</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">3</div>
+                        <div class="stat-label">Platforms</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">BL</div>
+                        <div class="stat-label">Genre</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="footer-content">
+            <div class="footer-logo">NOOR</div>
+            <p style="color: rgba(255,255,255,0.6); margin-bottom: 1rem;">Creating worlds where love knows no bounds.</p>
+
+            <div class="footer-social">
+                <a href="https://www.webnovel.com/profile/4502280100" target="_blank" title="Webnovel">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
+                </a>
+                <a href="https://www.goodnovel.com/author/133941576" target="_blank" title="Goodnovel">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                </a>
+                <a href="https://x.com/Noor_8874" target="_blank" title="X">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                </a>
+                <a href="https://www.instagram.com/noor._.8874/" target="_blank" title="Instagram">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+                </a>
+            </div>
+
+            <div class="footer-links">
+                <a href="#home">Home</a>
+                <a href="#books">Books</a>
+                <a href="#platforms">Platforms</a>
+                <a href="#about">About</a>
+            </div>
+
+            <div class="copyright">
+                 2026 Noor. All rights reserved. BL Author Portfolio.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            });
+        });
+
+        // Mobile menu
+        const mobileMenu = document.querySelector('.mobile-menu');
+        const navLinks = document.querySelector('.nav-links');
+
+        mobileMenu.addEventListener('click', () => {
+            navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+            navLinks.style.position = 'absolute';
+            navLinks.style.top = '100%';
+            navLinks.style.left = '0';
+            navLinks.style.right = '0';
+            navLinks.style.background = 'var(--primary)';
+            navLinks.style.flexDirection = 'column';
+            navLinks.style.padding = '1rem';
+            navLinks.style.gap = '1rem';
+        });
+
+        // Scroll animation
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('animate');
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+        document.querySelectorAll('.book-card, .platform-card').forEach(el => {
+            el.style.opacity = '0';
+            observer.observe(el);
+        });
+    </script>
+
+</body>
+</html>
